@@ -1,7 +1,7 @@
 %define		srcdir	ImageLounge
 Name:		nomacs
 Version:	1.4.0
-Release:	4
+Release:	5
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
