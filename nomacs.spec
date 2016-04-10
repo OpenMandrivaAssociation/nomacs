@@ -1,19 +1,31 @@
 %define		srcdir	ImageLounge
 Name:		nomacs
-Version:	2.4.6
-Release:	2
+Version:	3.0.0
+Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
-Source0:	http://sourceforge.net/projects/%{name}/files/%{name}-%{version}/%{name}-%{version}-source.tar.bz2
+Source0:	https://github.com/nomacs/nomacs/releases/download/%{version}/%{name}-%{version}-source.tar.bz2
 Url:		http://www.nomacs.org
 
-BuildRequires:	qt4-devel
+Patch0:		nomacs-3.0.0-quazip-build.patch
+Patch1:		nomacs-3.0.0-quazip-link.patch
+
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Test)
+BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5PrintSupport)
+BuildRequires:	pkgconfig(Qt5Concurrent)
+BuildRequires:	pkgconfig(Qt5Svg)
 BuildRequires:	cmake
+BuildRequires:	qmake5
+BuildRequires:	qt5-linguist-tools
 BuildRequires:	pkgconfig(libraw)
 BuildRequires:	pkgconfig(opencv)
 BuildRequires:	pkgconfig(exiv2)
+BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	gomp-devel
+BuildRequires:	quazip-devel
 BuildRequires:	desktop-file-utils
 
 %description
@@ -28,9 +40,15 @@ It allows to compare images and spot the differences
 
 %prep
 %setup -q
+%apply_patches
+
+rm -rf 3rdparty/libwebp
+rm -rf 3rdparty/quazip*
 
 %build
-%cmake_qt4
+%cmake	-DUSE_SYSTEM_WEBP=ON \
+	-DUSE_SYSTEM_QUAZIP=ON \
+	-DENABLE_RAW=1
 %make
 
 %install
@@ -44,3 +62,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/%{name}.1.*
 %{_datadir}/%{name}/translations/%{name}_*.qm
 %{_datadir}/pixmaps/%{name}.png
+%{_datadir}/appdata/nomacs.appdata.xml
+%{_libdir}/libnomacslib.so
