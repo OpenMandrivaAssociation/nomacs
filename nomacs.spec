@@ -1,6 +1,6 @@
 %define		srcdir	ImageLounge
 Name:		nomacs
-Version:	3.0.0
+Version:	3.2.0
 Release:	1
 License:	GPLv3
 Group:		Graphics
