@@ -1,5 +1,6 @@
 %define		srcdir	ImageLounge
 %define libname %mklibname %{name}
+%define develname %mklibname %{name} -d
 Name:		nomacs
 Version:	3.2.0
 Release:	1
@@ -37,11 +38,11 @@ the samecomputer or via LAN is possible.
 It allows to compare images and spot the differences 
 (e.g. schemes of architects to show the progress).
 
-%package -n %{libname}
+%package -n %{develname}
 Summary:	Shared libraries for %{name}
 Group:		System/Libraries
 
-%description -n	%{libname}
+%description -n	%{develname}
 Shared libraries for %{name}.
 
 %prep
@@ -70,7 +71,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.svg
 %{_datadir}/appdata/nomacs.appdata.xml
 
-%files -n %{libname}
+%files -n %{develname}
 %{_libdir}/lib%{name}*.so
 %{_libdir}/lib%{name}*.so.3
 %{_libdir}/lib%{name}*.so.3.2.0
