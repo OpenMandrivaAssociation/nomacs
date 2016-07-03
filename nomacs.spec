@@ -1,6 +1,7 @@
 %define major 3
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
+%define		srcdir	ImageLounge
 Name:		nomacs
 Version:	3.2.0
 Release:	1
