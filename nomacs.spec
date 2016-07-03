@@ -8,8 +8,6 @@ Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/releases/download/%{version}/%{name}-%{version}-source.tar.bz2
 Url:		http://www.nomacs.org
 
-Patch0:		nomacs-3.0.0-quazip-build.patch
-Patch1:		nomacs-3.0.0-quazip-link.patch
 
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Test)
