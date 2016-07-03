@@ -1,5 +1,5 @@
-%define		srcdir	ImageLounge
-%define libname %mklibname %{name}
+%define major 3
+%define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 Name:		nomacs
 Version:	3.2.0
@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	gomp-devel
 BuildRequires:	quazip-devel
 BuildRequires:	desktop-file-utils
+Requires: %{libname} = %{EVRD}
 
 %description
 
@@ -38,12 +39,19 @@ the samecomputer or via LAN is possible.
 It allows to compare images and spot the differences 
 (e.g. schemes of architects to show the progress).
 
-%package -n %{develname}
+%package -n %{libname}
 Summary:	Shared libraries for %{name}
 Group:		System/Libraries
 
-%description -n	%{develname}
+%description -n	%{libname}
 Shared libraries for %{name}.
+
+%package -n %{develname}
+Summary:	Developmentlibraries for %{name}
+Group:		Development/Other
+
+%description -n	%{develname}
+Development libraries for %{name}.
 
 %prep
 %setup -q
@@ -71,7 +79,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.svg
 %{_datadir}/appdata/nomacs.appdata.xml
 
-%files -n %{develname}
-%{_libdir}/lib%{name}*.so
+%files -n %{libname}
 %{_libdir}/lib%{name}*.so.3
 %{_libdir}/lib%{name}*.so.3.2.0
+
+%files -n %{develname}
+%{_libdir}/lib%{name}*.so
