@@ -59,6 +59,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/%{name}.1.*
 %{_datadir}/%{name}/translations/%{name}_*.qm
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/pixmaps/%{name}.svg
 %{_datadir}/appdata/nomacs.appdata.xml
-%{_libdir}/libnomacslib.so
+%{_libdir}/libnomacs*.so
+%{_libdir}/libnomacs*.so.3
+%{_libdir}/libnomacs*.so.3.2.0
