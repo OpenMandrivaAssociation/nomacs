@@ -60,8 +60,6 @@ Development libraries for %{name}.
 rm -rf 3rdparty/quazip*
 
 %build
-export CC=gcc
-export CXX=g++
 %cmake	-DUSE_SYSTEM_WEBP=ON \
 	-DUSE_SYSTEM_QUAZIP=ON \
 	-DENABLE_RAW=1
