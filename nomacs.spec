@@ -1,7 +1,7 @@
 %define major 3
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
-%define	srcdir ImageLounge
+
 Name:		nomacs
 Version:	3.2.0
 Release:	1
@@ -28,7 +28,6 @@ BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	gomp-devel
 BuildRequires:	quazip-devel
 BuildRequires:	desktop-file-utils
-Requires: %{libname} = %{EVRD}
 
 %description
 
@@ -58,10 +57,11 @@ Development libraries for %{name}.
 %setup -q
 %apply_patches
 
-rm -rf 3rdparty/libwebp
 rm -rf 3rdparty/quazip*
 
 %build
+export CC=gcc
+export CXX=g++
 %cmake	-DUSE_SYSTEM_WEBP=ON \
 	-DUSE_SYSTEM_QUAZIP=ON \
 	-DENABLE_RAW=1
