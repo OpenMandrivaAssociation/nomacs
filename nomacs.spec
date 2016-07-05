@@ -47,7 +47,7 @@ Group:		System/Libraries
 Shared libraries for %{name}.
 
 %package -n %{develname}
-Summary:	Developmentlibraries for %{name}
+Summary:	Development libraries for %{name}
 Group:		Development/Other
 
 %description -n	%{develname}
