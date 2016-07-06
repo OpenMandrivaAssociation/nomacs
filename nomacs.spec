@@ -49,7 +49,8 @@ Shared libraries for %{name}.
 
 %package -n %{plugins}
 Summary:      Plugins for %{name}
-Group:                System/Libraries
+Group:        System/Libraries
+Requires:     %{name} = %{version}
 
 %description -n       %{plugins}
 Plugins for %{name}.
