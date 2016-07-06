@@ -1,6 +1,6 @@
 %define major 3
 %define libname %mklibname %{name} %{major}
-%define develname %mklibname %{name} -d
+%define plugins %{name}-plugins
 
 Name:		nomacs
 Version:	3.2.0
@@ -9,6 +9,7 @@ License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/releases/download/%{version}/%{name}-%{version}-source.tar.bz2
+Source1:        https://github.com/nomacs/nomacs-plugins/archive/master.zip
 Url:		http://www.nomacs.org
 
 
@@ -46,18 +47,22 @@ Group:		System/Libraries
 %description -n	%{libname}
 Shared libraries for %{name}.
 
-%package -n %{develname}
-Summary:	Development libraries for %{name}
-Group:		Development/Other
+%package -n %{plugins}
+Summary:      Plugins for %{name}
+Group:                System/Libraries
 
-%description -n	%{develname}
-Development libraries for %{name}.
+%description -n       %{plugins}
+Plugins for %{name}.
 
 %prep
 %setup -q
 %apply_patches
 
 rm -rf 3rdparty/quazip*
+
+cd ..
+unzip ../SOURCES/master.zip 
+mv nomacs-plugins-master %{name}-%{version}/plugins
 
 %build
 %cmake	-DUSE_SYSTEM_WEBP=ON \
@@ -67,6 +72,9 @@ rm -rf 3rdparty/quazip*
 
 %install
 %makeinstall_std -C build
+
+rm -rf %{buildroot}%{_libdir}/lib%{name}*.so
+rm -rf %{buildroot}/usr/lib/%{plugins}/lib*Plugin.so
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
@@ -82,5 +90,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_libdir}/lib%{name}*.so.3
 %{_libdir}/lib%{name}*.so.3.2.0
 
-%files -n %{develname}
-%{_libdir}/lib%{name}*.so
+%files -n %{plugins}
+/usr/lib/%{plugins}/lib*Plugin.so.3
+/usr/lib/%{plugins}/lib*Plugin.so.3.2.0
