@@ -91,6 +91,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_libdir}/lib%{name}*.so.3
 %{_libdir}/lib%{name}*.so.3.2.0
 
+# It will be improved, but nomacs search and find plugins only here
 %files -n %{plugins}
 /usr/lib/%{plugins}/lib*Plugin.so.3
 /usr/lib/%{plugins}/lib*Plugin.so.3.2.0
