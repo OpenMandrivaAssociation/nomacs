@@ -8,7 +8,7 @@ Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
-Source0:	https://github.com/nomacs/nomacs/releases/download/%{version}/%{name}-%{version}-source.tar.bz2
+Source0:	https://github.com/nomacs/nomacs/archive/3.4.tar.gz
 Source1:        https://github.com/nomacs/nomacs-plugins/archive/master.zip
 Url:		http://www.nomacs.org
 
