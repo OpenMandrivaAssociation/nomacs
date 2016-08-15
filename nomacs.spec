@@ -76,6 +76,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr ../ImageLounge/.
 
 mv %{buildroot}/usr/lib %{buildroot}/usr/lib64
 rm -rf %{buildroot}%{_libdir}/lib%{name}*.so
+mkdir %{buildroot}/usr/lib
 mv %{buildroot}/usr/lib64/%{plugins}/ %{buildroot}/usr/lib/%{plugins}
 rm -rf %{buildroot}/usr/lib/%{plugins}/lib*Plugin.so
 
