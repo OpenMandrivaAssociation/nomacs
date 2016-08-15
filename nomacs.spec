@@ -67,7 +67,7 @@ mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 %build
 mkdir build
 cd build
-cmake ../ImageLounge/.
+cmake -DCMAKE_INSTALL_PREFIX=/usr ../ImageLounge/.
 
 %make
 
