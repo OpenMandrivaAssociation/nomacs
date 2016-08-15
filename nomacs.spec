@@ -3,12 +3,12 @@
 %define plugins %{name}-plugins
 
 Name:		nomacs
-Version:	3.2.0
+Version:	3.4.1
 Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
-Source0:	https://github.com/nomacs/nomacs/releases/download/%{version}/%{name}-%{version}-source.tar.bz2
+Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
 Source1:        https://github.com/nomacs/nomacs-plugins/archive/master.zip
 Url:		http://www.nomacs.org
 
@@ -57,18 +57,18 @@ Plugins for %{name}.
 
 %prep
 %setup -q
-%apply_patches
 
 rm -rf 3rdparty/quazip*
 
 cd ..
 unzip ../SOURCES/master.zip 
-mv nomacs-plugins-master %{name}-%{version}/plugins
+mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 
 %build
-%cmake	-DUSE_SYSTEM_WEBP=ON \
-	-DUSE_SYSTEM_QUAZIP=ON \
-	-DENABLE_RAW=1
+mkdir build
+cd build
+cmake ../ImageLounge/.
+
 %make
 
 %install
@@ -89,9 +89,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files -n %{libname}
 %{_libdir}/lib%{name}*.so.3
-%{_libdir}/lib%{name}*.so.3.2.0
+%{_libdir}/lib%{name}*.so.3.4.0
 
 # It will be improved, but nomacs search and find plugins only here
 %files -n %{plugins}
 /usr/lib/%{plugins}/lib*Plugin.so.3
-/usr/lib/%{plugins}/lib*Plugin.so.3.2.0
+/usr/lib/%{plugins}/lib*Plugin.so.3.4.0
