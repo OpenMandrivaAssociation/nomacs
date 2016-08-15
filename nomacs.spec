@@ -76,6 +76,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr ../ImageLounge/.
 
 rm -rf %{buildroot}%{_libdir}/lib%{name}*.so
 rm -rf %{buildroot}/usr/lib/%{plugins}/lib*Plugin.so
+mv %{buildroot}/usr/lib %{buildroot}/usr/lib64
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
