@@ -65,20 +65,12 @@ unzip ../SOURCES/master.zip
 mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 
 %build
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr ../ImageLounge/.
+%cmake_qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE:STRING="-O2" -DENABLE_RAW=1 -DUSE_SYSTEM_WEBP=ON -DUSE_SYSTEM_QUAZIP=ON  ../ImageLounge
 
 %make
 
 %install
 %makeinstall_std -C build
-
-mv %{buildroot}/usr/lib %{buildroot}/usr/lib64
-rm -rf %{buildroot}%{_libdir}/lib%{name}*.so
-mkdir %{buildroot}/usr/lib
-mv %{buildroot}/usr/lib64/%{plugins}/ %{buildroot}/usr/lib/%{plugins}
-rm -rf %{buildroot}/usr/lib/%{plugins}/lib*Plugin.so
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
