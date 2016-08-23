@@ -9,11 +9,10 @@ License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
-Source1:  https://github.com/nomacs/nomacs-plugins/archive/master.zip
-Source2:  %{name}.rpmlintrc
+Source1:	https://github.com/nomacs/nomacs-plugins/archive/master.zip
+Source2:	%{name}.rpmlintrc
 Url:		http://www.nomacs.org
-
-
+Suggests:	%{plugins} >= %{EVRD}
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(Qt5Network)
@@ -49,11 +48,11 @@ Group:		System/Libraries
 Shared libraries for %{name}.
 
 %package -n %{plugins}
-Summary:      Plugins for %{name}
-Group:        System/Libraries
-Requires:     %{name} = %{version}
+Summary:	Plugins for %{name}
+Group:		System/Libraries
+Requires:	%{name} = %{version}
 
-%description -n       %{plugins}
+%description -n %{plugins}
 Plugins for %{name}.
 
 %prep
@@ -62,7 +61,7 @@ Plugins for %{name}.
 rm -rf 3rdparty/quazip*
 
 cd ..
-unzip ../SOURCES/master.zip 
+unzip ../SOURCES/master.zip
 mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 
 %build
@@ -92,10 +91,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_datadir}/appdata/nomacs.appdata.xml
 
 %files -n %{libname}
-%{_libdir}/lib%{name}*.so.3
-%{_libdir}/lib%{name}*.so.3.4.0
+%{_libdir}/lib*%{name}*.so.%{major}*
 
 # It will be improved, but nomacs search and find plugins only here
 %files -n %{plugins}
-/usr/lib/%{plugins}/lib*Plugin.so.3
-/usr/lib/%{plugins}/lib*Plugin.so.3.4.0
+%{_prefix}/lib/%{plugins}/lib*Plugin.so.%{major}*
