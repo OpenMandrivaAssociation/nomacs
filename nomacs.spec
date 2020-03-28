@@ -14,6 +14,7 @@ Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://github.com/nomacs/nomacs-plugins/archive/nomacs-plugins-master.zip
 Source2:	%{name}.rpmlintrc
+Patch0:   nomacs-3.14.2-fix-missing-include-qt-5.15-openmandriva.patch
 Url:		http://www.nomacs.org
 Suggests:	%{plugins} >= %{EVRD}
 BuildRequires:  cmake(QuaZip5)
@@ -63,6 +64,7 @@ Plugins for %{name}.
 
 %prep
 %setup -q
+%autopatch -p1
 
 rm -rf 3rdparty/quazip*
 
