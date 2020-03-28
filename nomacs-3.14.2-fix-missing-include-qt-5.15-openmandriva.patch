@@ -1,6 +1,6 @@
-diff -up nomacs-plugins-master/PageExtractionPlugin/src/DkPageSegmentation.cpp nomacs-plugins-master/PageExtractionPlugin/src/DkPageSegmentation.cpp-om 
---- nomacs-plugins-master/PageExtractionPlugin/src/DkPageSegmentation.cpp 2020-03-13 09:43:46.000000000 +0100
-+++ nomacs-plugins-master/PageExtractionPlugin/src/DkPageSegmentation.cpp-om      2020-03-28 15:37:27.604661131 +0100
+diff -up nomacs-3.14.2/ImageLounge/plugins/PageExtractionPlugin/src/DkPageSegmentation.cpp nomacs-3.14.2/ImageLounge/plugins/PageExtractionPlugin/src/DkPageSegmentation.cpp-om 
+--- nomacs-3.14.2/ImageLounge/plugins/PageExtractionPlugin/src/DkPageSegmentation.cpp 2020-03-13 09:43:46.000000000 +0100
++++ nomacs-3.14.2/ImageLounge/plugins/PageExtractionPlugin/src/DkPageSegmentation.cpp-om      2020-03-28 15:37:27.604661131 +0100
 @@ -29,6 +29,7 @@
  #pragma warning(push, 0)       // no warnings from includes - begin
  #include <QDebug>
