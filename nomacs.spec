@@ -61,7 +61,7 @@ Plugins for %{name}.
 rm -rf 3rdparty/quazip*
 
 cd ..
-unzip ../SOURCES/master.zip
+unzip ../SOURCES/nomacs-plugins-master.zip
 mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 
 %build
