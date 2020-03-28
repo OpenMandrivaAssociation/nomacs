@@ -71,6 +71,8 @@ unzip ../SOURCES/nomacs-plugins-master.zip
 mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 
 %build
+export CC=gcc
+export CXX=g++
 %cmake_qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE:STRING="-O2" -DENABLE_RAW=1 -DUSE_SYSTEM_WEBP=ON -DUSE_SYSTEM_QUAZIP=OFF ../ImageLounge
 
 %make_build
