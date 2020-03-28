@@ -13,6 +13,7 @@ Source1:	https://github.com/nomacs/nomacs-plugins/archive/nomacs-plugins-master.
 Source2:	%{name}.rpmlintrc
 Url:		http://www.nomacs.org
 Suggests:	%{plugins} >= %{EVRD}
+BuildRequires:  cmake(QuaZip5)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(Qt5Network)
