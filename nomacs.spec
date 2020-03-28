@@ -26,6 +26,7 @@ BuildRequires:	pkgconfig(libraw)
 BuildRequires:	pkgconfig(opencv)
 BuildRequires:	pkgconfig(exiv2)
 BuildRequires:	pkgconfig(libwebp)
+BuildRequires:  pkgconfig(libtiff-4)
 BuildRequires:	gomp-devel
 BuildRequires:	quazip-devel
 BuildRequires:	desktop-file-utils
