@@ -3,8 +3,8 @@
 %define plugins %{name}-plugins
 
 Name:		nomacs
-Version:	3.4.1
-Release:	2
+Version:	3.14.2
+Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
@@ -67,10 +67,10 @@ mv nomacs-plugins-master %{name}-%{version}/ImageLounge/plugins
 %build
 %cmake_qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE:STRING="-O2" -DENABLE_RAW=1 -DUSE_SYSTEM_WEBP=ON -DUSE_SYSTEM_QUAZIP=ON  ../ImageLounge
 
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
