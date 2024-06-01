@@ -30,7 +30,7 @@ BuildRequires:	pkgconfig(exiv2)
 BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(libjxl)
-BuildRequires:	quazip-devel
+BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	desktop-file-utils
 # No point in splitting out an internal use only library...
 Obsoletes:	%{oldlibname} < %{EVRD}
