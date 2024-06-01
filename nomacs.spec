@@ -1,4 +1,3 @@
-%define oldlibname %mklibname nomacs 3
 %define plugins %{name}-plugins
 
 Name:		nomacs
@@ -10,7 +9,6 @@ Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
 Source1:	https://github.com/nomacs/nomacs-plugins/archive/master.tar.gz
 Source2:	%{name}.rpmlintrc
-Patch0:		nomacs-3.17.2295-plugins-find-qt6.patch
 Url:		http://www.nomacs.org
 Suggests:	%{plugins} >= %{EVRD}
 BuildRequires:	cmake(Qt6Core)
@@ -32,8 +30,10 @@ BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(libjxl)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	desktop-file-utils
-# No point in splitting out an internal use only library...
-Obsoletes:	%{oldlibname} < %{EVRD}
+
+%patchlist
+nomacs-3.17.2295-plugins-find-qt6.patch
+nomacs-qt6.patch
 
 %description
 nomacs is a free image viewer small, fast and able to handle the most
@@ -91,7 +91,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.%{name}.ImageLoun
 %{_datadir}/applications/org.%{name}.ImageLounge.desktop
 %{_mandir}/man1/%{name}.1.*
 %{_libdir}/lib*%{name}*.so*
+%{_datadir}/icons/hicolor/scalable/apps/org.nomacs.ImageLounge.svg
+%{_datadir}/metainfo/org.nomacs.ImageLounge.appdata.xml
+%{_datadir}/nomacs
 
 # It will be improved, but nomacs search and find plugins only here
 %files -n %{plugins}
-%{_prefix}/lib/%{plugins}/lib*Plugin.so.%{major}*
+%{_libdir}/%{plugins}/lib*Plugin.so*
