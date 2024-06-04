@@ -2,7 +2,7 @@
 
 Name:		nomacs
 Version:	3.17.2295
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
