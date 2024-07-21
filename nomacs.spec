@@ -1,8 +1,8 @@
 %define plugins %{name}-plugins
 
 Name:		nomacs
-Version:	3.17.2295
-Release:	2
+Version:	3.19.0
+Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
