@@ -1,7 +1,7 @@
 %define plugins %{name}-plugins
 
 Name:		nomacs
-Version:	3.19.0
+Version:	3.19.1
 Release:	1
 License:	GPLv3
 Group:		Graphics
