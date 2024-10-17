@@ -9,7 +9,7 @@ Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
 Source1:	https://github.com/nomacs/nomacs-plugins/archive/master.tar.gz
 Source2:	%{name}.rpmlintrc
-Url:		http://www.nomacs.org
+Url:		https://www.nomacs.org
 Suggests:	%{plugins} >= %{EVRD}
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Test)
