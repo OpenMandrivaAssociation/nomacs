@@ -1,16 +1,14 @@
 %define plugins %{name}-plugins
 
 Name:		nomacs
-Version:	3.19.1
-Release:	3
+Version:	3.22.0
+Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
-Source1:	https://github.com/nomacs/nomacs-plugins/archive/master.tar.gz
-Source2:	%{name}.rpmlintrc
 Url:		https://www.nomacs.org
-Suggests:	%{plugins} >= %{EVRD}
+
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Test)
 BuildRequires:	cmake(Qt6Network)
@@ -31,9 +29,11 @@ BuildRequires:	pkgconfig(libjxl)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	desktop-file-utils
 
-%patchlist
-nomacs-3.17.2295-plugins-find-qt6.patch
-nomacs-qt6.patch
+Recommends:	qt6-qtimageformats
+Recommends:	kf6-kimageformats
+
+Suggests:	%{plugins} >= %{EVRD}
+Obsoletes:	%{plugins} < %{version}
 
 %description
 nomacs is a free image viewer small, fast and able to handle the most
@@ -45,25 +45,18 @@ It allows to compare images and spot the differences
 (e.g. schemes of architects to show the progress).
 
 %package -n %{plugins}
-Summary:	Plugins for %{name}
-Group:		System/Libraries
-Requires:	%{name} = %{version}
+Summary:		Plugins for %{name}
+BuildRequires:	cmake(Qt6Core5Compat)
+Requires:		%{name} = %{version}
 
 %description -n %{plugins}
 Plugins for %{name}.
 
 %prep
-# Not using autosetup so we can apply patches after
-# the plugins have been moved to the right place
-%setup -q -a1
-rm -rf 3rdparty/quazip*
+%autosetup
 
-rmdir ImageLounge/plugins
-mv nomacs-plugins-master ImageLounge/plugins
-
-%autopatch -p1
-# Update Qt5 hardcodes
-find ImageLounge/plugins -name CMakeLists.txt |xargs sed -i -e 's/Qt5/Qt6/g;s,QT5,QT6,g'
+# Be sure
+rmdir {3rd-party/*,3rd-party}
 
 %conf
 %cmake \
@@ -73,8 +66,6 @@ find ImageLounge/plugins -name CMakeLists.txt |xargs sed -i -e 's/Qt5/Qt6/g;s,QT
 	-DENABLE_AVIF=ON \
 	-DUSE_SYSTEM_WEBP=ON \
 	-DUSE_SYSTEM_QUAZIP=ON \
-	-DQT_QMAKE_EXECUTABLE=%{_qtdir}/bin/qmake \
-	-DQT_VERSION_MAJOR=6 \
 	-G Ninja \
 	../ImageLounge
 
@@ -87,6 +78,8 @@ find ImageLounge/plugins -name CMakeLists.txt |xargs sed -i -e 's/Qt5/Qt6/g;s,QT
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.%{name}.ImageLounge.desktop
 
 %files
+%license ImageLounge/license/*
+%doc README.md
 %{_bindir}/%{name}
 %{_datadir}/applications/org.%{name}.ImageLounge.desktop
 %{_mandir}/man1/%{name}.1.*
