@@ -2,11 +2,12 @@
 
 Name:		nomacs
 Version:	3.22.0
-Release:	2
+Release:	3
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
+Patch0:		nomacs-opencv5.patch
 Url:		https://www.nomacs.org
 
 BuildRequires:	cmake(Qt6Core)
@@ -21,7 +22,7 @@ BuildRequires:	ninja
 BuildRequires:	qmake-qt6
 BuildRequires:	qt6-qttools-linguist-tools
 BuildRequires:	pkgconfig(libraw)
-BuildRequires:	pkgconfig(opencv4)
+BuildRequires:	pkgconfig(opencv5)
 BuildRequires:	pkgconfig(exiv2)
 BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	pkgconfig(libavif)
@@ -53,7 +54,7 @@ Requires:		%{name} = %{version}
 Plugins for %{name}.
 
 %prep
-%autosetup
+%autosetup -p1
 
 # Be sure
 rmdir {3rd-party/*,3rd-party}
