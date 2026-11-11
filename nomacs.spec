@@ -1,13 +1,12 @@
 %define plugins %{name}-plugins
 
 Name:		nomacs
-Version:	3.22.0
-Release:	4
+Version:	3.23.4
+Release:	1
 License:	GPLv3
 Group:		Graphics
 Summary:	A fast and small image viewer
 Source0:	https://github.com/nomacs/nomacs/archive/%{version}.tar.gz
-Patch0:		nomacs-opencv5.patch
 Url:		https://www.nomacs.org
 
 BuildRequires:	cmake(Qt6Core)
@@ -24,10 +23,10 @@ BuildRequires:	qt6-qttools-linguist-tools
 BuildRequires:	pkgconfig(libraw)
 BuildRequires:	pkgconfig(opencv5)
 BuildRequires:	pkgconfig(exiv2)
-BuildRequires:	pkgconfig(libwebp)
-BuildRequires:	pkgconfig(libavif)
-BuildRequires:	pkgconfig(libjxl)
 BuildRequires:	pkgconfig(libtiff-4)
+BuildRequires:	pkgconfig(xcb)
+BuildRequires:	cmake(Qt6DBus)
+BuildRequires:	cmake(QuaZip-Qt6)
 BuildRequires:	desktop-file-utils
 
 Recommends:	qt6-qtimageformats
@@ -48,7 +47,7 @@ It allows to compare images and spot the differences
 %package -n %{plugins}
 Summary:		Plugins for %{name}
 BuildRequires:	cmake(Qt6Core5Compat)
-Requires:		%{name} = %{version}
+Requires:		%{name} = %{EVRD}
 
 %description -n %{plugins}
 Plugins for %{name}.
@@ -56,17 +55,13 @@ Plugins for %{name}.
 %prep
 %autosetup -p1
 
-# Be sure
-rmdir {3rd-party/*,3rd-party}
-
 %conf
 %cmake \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DENABLE_RAW=1 \
-	-DENABLE_JXL=ON \
-	-DENABLE_AVIF=ON \
-	-DUSE_SYSTEM_WEBP=ON \
-	-DUSE_SYSTEM_QUAZIP=ON \
+	-DENABLE_RAW=ON \
+	-DENABLE_QUAZIP=ON \
+	-DENABLE_DBUS=ON \
+	-DENABLE_TESTING=OFF \
 	-G Ninja \
 	../ImageLounge
 
